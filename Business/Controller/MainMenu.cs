@@ -5,13 +5,6 @@ public class MainMenu {
     private static List<User_Borrow> user_BorrowList;
     static Login login = new Login();
 
-    //ดึงสเตตัสของจักรยานออกมา
-    //ยังไม่ได้แก้ข้างในฟังชั่นต่างๆนะ ยังใช้แบบโลเคชั่นเดียวอยู่
-    private static string[] Status_Bike = Database.Get_Status_BikeA();
-    private static string[] Status_BikeB = Database.Get_Status_BikeB();
-    private static string[] Status_BikeC = Database.Get_Status_BikeC();
-    private static string[] Status_BikeD = Database.Get_Status_BikeD();
-    //
 
     //Setค่าตัวตนผู้ใช้งาน ปัจจุบัน
     private string Username_Login = Database.Get_Username_Login();
@@ -33,7 +26,9 @@ public class MainMenu {
     private void PrintListMenuScreen() {
         foreach(User user in ListUser) {
             if(Username_Login == user.Get_Username()){
-        Console.WriteLine("Username : {0} | CitizenID : {0} | PhoneNumber : {0}",user.Get_Username(),user.Get_Citizen_ID(),user.Get_Phone_number());
+        Console.WriteLine("=======================================");
+        Console.WriteLine("Date : {0} | Time :{1}",DateTimes.GetDate(),DateTimes.GetTime());
+        Console.WriteLine("Username : {0} | CitizenID : {1} | Phon_number : {2}",user.Get_Username(),user.Get_Citizen_ID(),user.Get_Phone_number());
         Console.WriteLine("-----------------------------------");
         Console.WriteLine("||   1 - Bicycle Reservation        ||");
         Console.WriteLine("||   2 - List your Bicycle          || ");
@@ -103,8 +98,7 @@ public class MainMenu {
     public string check1(){
         return "menu";
     }
-    private void Reservation() { //ฟังชั่นจอง
-
+    private void Show_location_Status(string[] Status_Bike,char location){
         Console.WriteLine("________________________________________________");
         Console.WriteLine("|                                               |");
         Console.WriteLine("|                VEHICLES LIST                  |");
@@ -131,21 +125,20 @@ public class MainMenu {
         Console.WriteLine(" |_______________|");
         Console.WriteLine("");
         Console.WriteLine("Input ID to Reservation or Input [0] Back to Main Menu ");
-        Console.WriteLine("Select Menu: ");
-
-        int input = int.Parse(Console.ReadLine());//คืออันดับที่ยืม
+            Console.WriteLine("Select Menu: ");
+            int input = int.Parse(Console.ReadLine());//คืออันดับที่ยืม
             
             if(input >= 1 && input <= 16){
                 input--;
                 if(Status_Bike[input] == "Ready"){
                     Console.WriteLine("Reservated!!!");
 
-                    Database.Set_Status_BikeA(input,"Active");
+                    Database.Set_Status_Bike(input,"Active",location);
                     foreach(User user in ListUser) {
                         if(Username_Login == user.Get_Username()){
-                            double time = 0;// อย่าลืมใส่ จักรยานที่ยืมไป แล้วก็ค่าการเข้าโปรแกรม //โลเคชั่น // เพิ่มค่าอันดับตัวตนของผู้ใช้
+                            double time = DateTimes.GetTimetoDouble();// อย่าลืมใส่ จักรยานที่ยืมไป แล้วก็ค่าการเข้าโปรแกรม //โลเคชั่น // เพิ่มค่าอันดับตัวตนของผู้ใช้
                             check_borrow++;
-                            User_Borrow user_borrow = new User_Borrow(user.Get_Name(),user.Get_Sur_name(),user.Get_Phone_number(),user.Get_Student_ID(),user.Get_Citizen_ID(),user.Get_Mail(),user.Get_Username(),user.Get_Password(),time,input,check_borrow);
+                            User_Borrow user_borrow = new User_Borrow(user.Get_Name(),user.Get_Sur_name(),user.Get_Phone_number(),user.Get_Student_ID(),user.Get_Citizen_ID(),user.Get_Mail(),user.Get_Username(),user.Get_Password(),time,input,check_borrow,location);
                             Database.AddNewUser_Borrow(user_borrow);
                             break;}
                     }
@@ -167,12 +160,20 @@ public class MainMenu {
             }
         Console.WriteLine("");
     }
+    private void Reservation() { //ฟังชั่นจอง แยกโลเคชัั่นทำให้มันเยอะ
+        Console.WriteLine("Input Location : {A,B,C,D}");
+        char input_location = char.Parse(Console.ReadLine());
+        Show_location_Status(Database.Get_Status_Bike(input_location),input_location);
+    }
 
+    private string Select_Location_Status(char location,int i){
+        string[] Status_Bike = Database.Get_Status_Bike(location);
+        return Status_Bike[i];
+    }
     private void UserList() { //ฟังชั่นคืน
-        double sumprice = Sumprice(); // คำนวณเงินที่ต้องจ่าย
-        sumprice = 9999;
         user_BorrowList = Database.Get_User_BorrowList();
         foreach(User_Borrow user_borrow in user_BorrowList) {
+            double sumprice = Sumprice(user_borrow.Get_Time_borrow());
             if(Username_Login == user_borrow.Get_Username()){
                 Console.WriteLine("");
                 Console.WriteLine("________________________________________________");
@@ -180,9 +181,9 @@ public class MainMenu {
                 Console.WriteLine("|               My Bicycle List                 |");
                 Console.WriteLine("|_______________________________________________|");
                 Console.WriteLine("________________________________________________");
-                Console.WriteLine(" | ID |    Date    | Status | Charge |");
+                Console.WriteLine(" | ID | Location |  Date    | Status | Charge |");
                 Console.WriteLine(" |-----------------------------------------------");
-                Console.WriteLine(" | {0}  |     {1}    |    {2}   | {3} Bath|",user_borrow.Get_Index_borrow()+1,user_borrow.Get_Time_borrow(),Status_Bike[user_borrow.Get_Index_borrow()],sumprice);
+                Console.WriteLine(" | {0}  | {1}    |  {2}  |   {3}   | {4} Bath |",user_borrow.Get_Index_borrow()+1,user_borrow.Get_Location_borrow(),user_borrow.Get_Time_borrow(),Select_Location_Status(user_borrow.Get_Location_borrow(),user_borrow.Get_Index_borrow()),sumprice);
                 Console.WriteLine(" |______________________________________________|");
                 Console.WriteLine("");
 
@@ -194,7 +195,7 @@ public class MainMenu {
             Console.WriteLine("input money to pay :");
             double inputmoney = double.Parse(Console.ReadLine());
                 if(inputmoney == sumprice){
-                    Database.Set_Status_BikeA(user_borrow.Get_Index_borrow() ,"Ready" );
+                    Database.Set_Status_Bike(user_borrow.Get_Index_borrow() ,"Ready",user_borrow.Get_Location_borrow());
                     Database.RemoveUser(user_borrow);
                     //check_borrow--;
                     Console.WriteLine("Compls");
@@ -220,9 +221,10 @@ public class MainMenu {
         }
         ShowMainMenuScreen();
     }   
-    private double Sumprice(){//ฟังชั่นคำนวณเงินที่ต้องจ่าย
-        return  0 ;
-        //ไว้คำนวณแล้วมันรีเทินเป็น เงินออกมาก
+    private double Sumprice(double time_borrow){//ฟังชั่นคำนวณเงินที่ต้องจ่าย
+        double time_Return =  DateTimes.GetTimetoDouble();
+        double SumPrice = Math.Ceiling(time_Return - time_borrow) * 15 ;
+        return  SumPrice;
     }
     private void SetUserMain(){ //ยังไม่ได้เช็คว่าทำงานได้มั้ย มันคือการ Setค่าว่าเคยยืมไปรึยังจะได้แสดงเมนูได้ถูกต้อง วิธีเช็คคือ ให้ผู้ใช้คนแรก ยืมแล้วออกระบบ แล้วผู้ใช้คนที่สองล็อคอินเข้ามาดูว่า ยืมได้มั้ย
         user_BorrowList = Database.Get_User_BorrowList();

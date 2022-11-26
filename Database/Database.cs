@@ -101,35 +101,41 @@ public class Database{
     private static string[] Status_BikeC = new string [16] {"Ready","Ready","Ready","Ready","Ready","Ready","Ready","Ready","Ready","Ready","Ready","Ready","Ready","Ready","Ready","Ready"};
     private static string[] Status_BikeD = new string [16] {"Ready","Ready","Ready","Ready","Ready","Ready","Ready","Ready","Ready","Ready","Ready","Ready","Ready","Ready","Ready","Ready"};
     
-    public static string[] Set_Status_BikeA(int i ,string Status){
-        Status_BikeA[i] = Status; 
-        return Status_BikeA;
+    public static string[] Set_Status_Bike(int i ,string Status,char location){
+        if(location == 'A'){
+            Status_BikeA[i] = Status; 
+            return Status_BikeA;
+        }
+        else if (location == 'B'){
+            Status_BikeB[i] = Status; 
+            return Status_BikeB;
+        }
+        else if (location == 'C'){
+            Status_BikeC[i] = Status; 
+            return Status_BikeC;
+        }
+        else if (location == 'D'){
+            Status_BikeD[i] = Status; 
+            return Status_BikeD; 
+        }
+        return null;
     }
-    public static string[] Get_Status_BikeA(){
-        return Status_BikeA;
+    public static string[] Get_Status_Bike(char location){
+        if(location == 'A'){
+            return Status_BikeA;
+        }
+        else if (location == 'B'){
+            return Status_BikeB;
+        }
+        else if (location == 'C'){
+            return Status_BikeC;
+        }
+        else if (location == 'D'){
+            return Status_BikeD; 
+        }
+        return null;
+        
     }
-    public static string[] Set_Status_BikeB(int i ,string Status){
-        Status_BikeB[i] = Status; 
-        return Status_BikeB;
-    }
-    public static string[] Get_Status_BikeB(){
-        return Status_BikeB;
-    }
-    public static string[] Set_Status_BikeC(int i ,string Status){
-        Status_BikeC[i] = Status; 
-        return Status_BikeC;
-    }
-    public static string[] Get_Status_BikeC(){
-        return Status_BikeC;
-    }
-    public static string[] Set_Status_BikeD(int i ,string Status){
-        Status_BikeD[i] = Status; 
-        return Status_BikeD;
-    }
-    public static string[] Get_Status_BikeD(){
-        return Status_BikeD;
-    }
-    //
 
     //เช็ค ล็อคอิน
     public static bool check_Login(string Username, string Password){
