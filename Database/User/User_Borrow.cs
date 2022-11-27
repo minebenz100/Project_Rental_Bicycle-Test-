@@ -11,12 +11,6 @@ public class User_Borrow :User{
         this.index_borrow = index_borrow;
         this.check_borrow = check_borrow;
         this.location_borrow =  location_borrow;
-        //this.Location_borrow = location_borrow;
-    }
-        public User_Borrow(string name,string sur_name,string phone_number,string citizen_ID,string mail,string username,string password,double time_borrow)
-    :base(name,sur_name,phone_number,citizen_ID,mail,username,password){
-        this.time_borrow = time_borrow;
-        this.index_borrow = index_borrow;
     }
     public char Get_Location_borrow(){
        return this.location_borrow;

@@ -5,7 +5,7 @@ public class Database{
     //List ที่เก็บข้อมูลผู้ใช้ต่างๆ
     private static List<User> userList = new List<User>(); 
     private static List<User_Borrow> user_BorrowList = new List<User_Borrow>();
-    private static List<User_Return> user_ReturnList = new List<User_Return>();
+
 
         public static void AddNewUser(User user) {
         userList.Add(user);
@@ -13,9 +13,7 @@ public class Database{
         public static void AddNewUser_Borrow(User_Borrow user_Borrow) {
         user_BorrowList.Add(user_Borrow);
     }
-        public static void AddNewUser_Return(User_Return user_Return) {
-        user_ReturnList.Add(user_Return);
-    }
+
         public static void RemoveUser(User_Borrow user_borrow){
             user_BorrowList.Remove(user_borrow);
         }
@@ -26,9 +24,7 @@ public class Database{
         public static List<User_Borrow> Get_User_BorrowList(){
         return user_BorrowList;
     }
-        public static List<User_Return> Get_User_ReturnList(){
-        return user_ReturnList;
-    }
+
     //
 
     //ไว้เช็คข้อมูลต่างๆของยูสเซอร์ภายในลิส
@@ -63,23 +59,6 @@ public class Database{
             Console.WriteLine("Username : {0}",user.Get_Username());
             Console.WriteLine("Password : {0}",user.Get_Password());
             Console.WriteLine("Time Borrow : {0}",user.Get_Time_borrow());
-            Console.WriteLine("************");
-        }
-        }
-        public  void ShowData(List<User_Return> user_returnList ){
-        Console.Clear();
-        Console.WriteLine("List User Return");
-        Console.WriteLine("************");
-        foreach(User_Return user in user_ReturnList) {
-            Console.WriteLine("Name : {0}",user.Get_Name());
-            Console.WriteLine("Surname : {0}",user.Get_Sur_name());
-            Console.WriteLine("Phone_Number : {0}",user.Get_Phone_number());
-            Console.WriteLine("Mail : {0}",user.Get_Mail());
-            Console.WriteLine("Student_ID : {0}",user.Get_Student_ID());
-            Console.WriteLine("Citizen_ID : {0}",user.Get_Citizen_ID());
-            Console.WriteLine("Username : {0}",user.Get_Username());
-            Console.WriteLine("Password : {0}",user.Get_Password());
-            Console.WriteLine("Time Return : {0}",user.Get_Time_return());
             Console.WriteLine("************");
         }
         }
