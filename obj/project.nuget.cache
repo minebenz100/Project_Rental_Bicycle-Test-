@@ -1,8 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "GecqryrKqdxtT70JaASpVB9GUxHPT1mQEeJuErTfvaVLeaFksA2VsSvsqshJZveciSdfK/A/DIpQNVYMvWKqqQ==",
+  "dgSpecHash": "4UrNEgRE+lRVt6k37KrhmcWLx7g4LcuCHaY0RC5O7GnrKCmJzJ9i23Rq4A4Fd/FO+5ORvqPKkaI6uo0hmbx0zw==",
   "success": true,
   "projectFilePath": "C:\\Users\\Kim\\Desktop\\Code\\Project_Rental_Bicycle\\Project_Rental_Bicycle.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\Kim\\.nuget\\packages\\microsoft.win32.systemevents\\7.0.0\\microsoft.win32.systemevents.7.0.0.nupkg.sha512",
+    "C:\\Users\\Kim\\.nuget\\packages\\system.drawing.common\\7.0.0\\system.drawing.common.7.0.0.nupkg.sha512"
+  ],
   "logs": []
 }

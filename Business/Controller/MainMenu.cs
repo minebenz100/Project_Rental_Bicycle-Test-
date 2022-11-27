@@ -110,6 +110,7 @@ public class MainMenu {
         return "menu";
     }
     private void Show_location_Status(string[] Status_Bike,char location){//โชว์การจอง
+        Console.Clear();
         Console.WriteLine("________________________________________________");
         Console.WriteLine("|                                               |");
         Console.WriteLine("|                VEHICLES LIST                  |");
@@ -152,7 +153,7 @@ public class MainMenu {
                     Database.Set_Status_Bike(input,"Active",location);
                     foreach(User user in ListUser) {
                         if(Username_Login == user.Get_Username()){
-                            double time = DateTimes.GetTimetoDouble();// อย่าลืมใส่ จักรยานที่ยืมไป แล้วก็ค่าการเข้าโปรแกรม //โลเคชั่น // เพิ่มค่าอันดับตัวตนของผู้ใช้
+                            double time = DateTimes.GetTimetoDouble();
                             check_borrow++;
                             User_Borrow user_borrow = new User_Borrow(user.Get_Name(),user.Get_Sur_name(),user.Get_Phone_number(),user.Get_Student_ID(),user.Get_Citizen_ID(),user.Get_Mail(),user.Get_Username(),user.Get_Password(),time,input,check_borrow,location);
                             Database.AddNewUser_Borrow(user_borrow);
@@ -235,7 +236,6 @@ public class MainMenu {
             if(!check_Input){
                 UserList();
             }
-            //double inputmoney = double.Parse(Console.ReadLine());
                 if(inputmoney == sumprice){
                     Database.Set_Status_Bike(user_borrow.Get_Index_borrow() ,"Ready",user_borrow.Get_Location_borrow());
                     Database.RemoveUser(user_borrow);
@@ -244,7 +244,7 @@ public class MainMenu {
                     Console.WriteLine("----Successfully Return----");
                     Console.WriteLine("");
                     //เรียกใช้ใส่รูปมาตรงนี้ 
-                    //user_borrow.Get_Name(),user_borrow.Get_Sur_name(),user_borrow.Get_Student_ID(),user_borrow.Get_Location_borrow(),user_borrow.Get_Index_borrow(),user_borrow.Get_Time_borrow(),time_now(),sumprice;
+                    Picture.Print_Picture(user_borrow.Get_Name(),user_borrow.Get_Sur_name(),user_borrow.Get_Student_ID(),user_borrow.Get_Location_borrow(),user_borrow.Get_Index_borrow(),user_borrow.Get_Time_borrow(),time_now,sumprice); 
                 }
                 else{
                     Console.WriteLine("----Incorrect Money Input----");

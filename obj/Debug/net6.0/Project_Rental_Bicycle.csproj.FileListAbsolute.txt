@@ -13,3 +13,8 @@ C:\Users\Kim\Desktop\Code\Project_Rental_Bicycle\obj\Debug\net6.0\refint\Project
 C:\Users\Kim\Desktop\Code\Project_Rental_Bicycle\obj\Debug\net6.0\Project_Rental_Bicycle.pdb
 C:\Users\Kim\Desktop\Code\Project_Rental_Bicycle\obj\Debug\net6.0\Project_Rental_Bicycle.genruntimeconfig.cache
 C:\Users\Kim\Desktop\Code\Project_Rental_Bicycle\obj\Debug\net6.0\ref\Project_Rental_Bicycle.dll
+C:\Users\Kim\Desktop\Code\Project_Rental_Bicycle\bin\Debug\net6.0\Microsoft.Win32.SystemEvents.dll
+C:\Users\Kim\Desktop\Code\Project_Rental_Bicycle\bin\Debug\net6.0\System.Drawing.Common.dll
+C:\Users\Kim\Desktop\Code\Project_Rental_Bicycle\bin\Debug\net6.0\runtimes\win\lib\net6.0\Microsoft.Win32.SystemEvents.dll
+C:\Users\Kim\Desktop\Code\Project_Rental_Bicycle\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Drawing.Common.dll
+C:\Users\Kim\Desktop\Code\Project_Rental_Bicycle\obj\Debug\net6.0\Project_Rental_Bicycle.csproj.CopyComplete
