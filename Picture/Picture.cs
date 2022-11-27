@@ -1,5 +1,6 @@
 using System;
 using System.Drawing;
+//dotnet add package System.Drawing.Common ด้วย
 
 class Picture
 {
