@@ -43,13 +43,7 @@ class Picture
             165,
             25
         );
-        graphics.DrawString(
-            End,
-            fontE,
-            textBrush,
-            340,
-            470
-        );
+        
         SizeF textSize = graphics.MeasureString(Name1,fontI);
         graphics.DrawString(
             Name1,
@@ -64,49 +58,94 @@ class Picture
             fontI,
             textBrush,
             (OutputImageSize - textSize.Width ) / 2,
-            (OutputImageSize - textSize.Height - 30 ) / 4
+            (OutputImageSize - textSize.Height - 50 ) / 4
         );
         graphics.DrawString(
             ID,
             fontI,
             textBrush,
             130,
-            150
+            170
         );
         graphics.DrawString(
             Location,
             fontI,
             textBrush,
             130,
-            190
+            210
         );
         graphics.DrawString(
             Number_Bicycle,
             fontI,
             textBrush,
             130,
-            230
+            250
         );
         graphics.DrawString(
             Borrow,
             fontI,
             textBrush,
             130,
-            270
+            290
         );
         graphics.DrawString(
             Return,
             fontI,
             textBrush,
             130,
-            310
+            330
         );
         graphics.DrawString(
             Borrowed_price,
             fontI,
             textBrush,
             130,
-            350
+            370
+        );
+        SizeF textSize3 = graphics.MeasureString(END2,fontI);
+        graphics.DrawString(
+            END2,
+            fontI,
+            textBrush,
+            55,
+            120
+        );
+        SizeF textSize4 = graphics.MeasureString(END2,fontI);
+        graphics.DrawString(
+            END2,
+            fontI,
+            textBrush,
+            55,
+            60
+        );
+        graphics.DrawString(
+            Info,
+            fontE,
+            textBrush,
+            225,
+            140
+        );
+        SizeF textSize5 = graphics.MeasureString(END2,fontI);
+        graphics.DrawString(
+            END2,
+            fontI,
+            textBrush,
+            55,
+            400
+        );
+        graphics.DrawString(
+            End,
+            fontE,
+            textBrush,
+            180,
+            420
+        );
+        graphics.DrawString(
+            KMUTT,
+            fontE,
+            textBrush,
+            190,
+            440
         );
         outputImage.Save(OutputImageFilePath);
         graphics.Dispose();
