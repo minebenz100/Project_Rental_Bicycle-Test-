@@ -7,10 +7,6 @@ class Picture
     private const int OutputImageSize = 500;
     //private static string OutputImageFilePath = "output.bmp";
 
-    public void SetUser(string name,double time_Return){
-
-    }
-
     public static void Print_Picture(string name,string surename,string student_ID,char location,int index_Bike,double time_borrow,double time_Return,double Price)
     {
 
