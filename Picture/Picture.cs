@@ -5,43 +5,34 @@ using System.Drawing;
 class Picture
 {
     private const int OutputImageSize = 500;
-    private const string OutputImageFilePath = "output.bmp";
+    //private static string OutputImageFilePath = "output.bmp";
 
+    public void SetUser(string name,double time_Return){
+
+    }
 
     public static void Print_Picture(string name,string surename,string student_ID,char location,int index_Bike,double time_borrow,double time_Return,double Price)
     {
-        //  ข้อมูล
-        //Console.WriteLine("|||||||||||||||| Time : {0} ||||||||||||||||||",time_borrow); เทส
-        //มันทำงี้ไม่ได้ ถ้าจะทำงี้ต้องเป็น Console.WtireLine เท่านั้น ไอ {0} คิดว่าควรปริ้นแยกกัน ปริ้นตัวแปร กับ ปริ้นค่าคงที่อ่ะ
+
+        string OutputImageFilePath = String.Format("output_{0}_{1}.bmp",name,time_Return);
+
         string Head = ("Rental_Bicycle");
-        string Name1 = ("Firstname : {0}",name);
-        string Name2 = ("Surename : {0}",surename);
-        string ID = ("Student ID : {0}",student_ID);
-        string Location = ("Location : {0}",location);
-        string Number_Bicycle = ("NumberBicycle : {0}",index_Bike);
-        string Borrow = ("Borrowtime : {0}",time_borrow);
-        string Return = ("Returntime : {0}",time_Return);
-        string Borrowed_price = ("Price : {0} Bath",Price);
+        string Name1 = String.Format("Firstname : {0}",name);
+        string Name2 = String.Format("Surename : {0}",surename);
+        string ID = String.Format("Student ID : {0}",student_ID);
+        string Location = String.Format("Location : {0}",location);
+        string Number_Bicycle = String.Format("NumberBicycle : {0}",index_Bike);
+        string Borrow = String.Format("Borrowtime : {0}",time_borrow);
+        string Return = String.Format("Returntime : {0}",time_Return);
+        string Borrowed_price = String.Format("Price : {0} Bath",Price);
         string End = ("Thank you for using");
-
-        // string Head = ("Rental_Bicycle");
-        // string Name1 = ("Firstname : SAWASAKORN");
-        // string Name2 = ("Surename : KUMNODSRI");
-        // string ID = ("Student ID : 64120501007");
-        // string Location = ("Location : A");
-        // string Number_Bicycle = ("NumberBicycle : 1");
-        // string Borrow = ("Borrowtime : 00.00");
-        // string Return = ("Returntime : 01.00");
-        // string Borrowed_price = ("Price : 100B");
-        // string End = ("Thank you for using");
-
 
         Font fontH = new Font("Arial", 20);
         Font fontI = new Font("Arial", 16);
         Font fontE = new Font("Arial", 12);
         SolidBrush ellipseBrush = new SolidBrush(Color.White);
         SolidBrush textBrush = new SolidBrush(Color.Black);
-        Bitmap outputImage = new Bitmap("MDT.bmp");
+        Bitmap outputImage = new Bitmap("Picture/MDT.bmp");
         Pen WhitePen = new Pen(Color.White, 0);
         Pen Orangepen = new Pen(Color.OrangeRed, 4);
         Graphics graphics = Graphics.FromImage(outputImage);
